@@ -1,6 +1,6 @@
 # Pneumatic Levitator — Control Engineering Project
 
-A control engineering project developed under the supervision of **Prof. Leonardo Bermeo Clavijo**, implementing system identification and a two-degree-of-freedom PID controller to levitate a ball inside a vertical transparent tube using a fan as the actuator.
+A control engineering project implementing system identification and a two-degree-of-freedom PID controller to levitate a ball inside a vertical transparent tube using a fan as the actuator.
 
 The system is an inherently **unstable third-order plant** with an integrating pole, making it a representative example of balance control systems (analogous to aircraft pitch control or DC-DC converters). The controller runs on an **ESP32** microcontroller and reads ball position using a **VL53L0X time-of-flight laser sensor**.
 
@@ -32,31 +32,6 @@ Identified parameters from the Åström relay experiment:
 
 ---
 
-## Repository Structure
-
-```
-pneumatic-levitator/
-│
-├── firmware/
-│   ├── levitador_histeresis/
-│   │   └── levitador_histeresis.ino    # Åström relay experiment for system identification
-│   │
-│   ├── levitador_control_prop/
-│   │   └── levitador_control_prop.ino  # Proportional controller (used to estimate ueq)
-│   │
-│   └── levitador_2DOF_PID/
-│       ├── levitador_control_prac3.ino # Final 2-DOF PID controller
-│       └── definitions.h               # Hardware config, PWM setup, sensor driver, moving average filter
-│
-├── cad/
-│   ├── Proyecto_control.stl            # STL file for 3D printing the base
-│   └── Proyecto_control.f3d            # Fusion 360 source file
-│
-├── docs/
-│   └── modelo_levitador.pdf            # Mathematical model and identification guide (Prof. Bermeo)
-│
-└── README.md
-```
 
 ---
 
@@ -110,11 +85,11 @@ I(k+1) = I(k) + bi·(r - y) + br·(usat - U)   ← anti-windup
 
 Gains computed from identified parameters (`b = 53.33`, `τ = 2`, `ωn = 15`, `ζ = 1.5`, `N = 14`):
 
-| Gain | Formula | Value |
-|------|---------|-------|
-| kp | τ·ωn²·(4ζ+1) / b | — |
-| ki | 2·τ·ωn³ / b | — |
-| kd | (τ·ωn·(2ζ+2) - 1) / b | — |
+| Gain | Formula | 
+|------|---------|
+| kp | τ·ωn²·(4ζ+1) / b |
+| ki | 2·τ·ωn³ / b |
+| kd | (τ·ωn·(2ζ+2) - 1) / b |
 
 The reference weight `β = 0` eliminates proportional kick on reference changes (set-point weighting).
 
@@ -142,13 +117,6 @@ The base structure was designed in Fusion 360 and 3D printed — STL and source 
 - Arduino ESP32 core
 
 ---
-
-## Authors
-
-- Sebastian Jaramillo Verdugo
-- Rosemberth Steeven Preciga Puentes
-- Jorge Santiago Camargo Guerrero
-- Gabriel Felipe Ostos Iguavita
 
 **Supervisor:** Prof. Leonardo Bermeo Clavijo
 
